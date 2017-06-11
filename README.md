@@ -1,5 +1,4 @@
-passwd-file
-======
+# passwd-file
 
 [![npm version](https://badge.fury.io/js/passwd-file.svg)](https://badge.fury.io/js/passwd-file) 
 [![Dependency Status](https://img.shields.io/gemnasium/hobbyquaker/passwd-file.svg?maxAge=2592000)](https://gemnasium.com/github.com/hobbyquaker/passwd-file)
@@ -11,7 +10,51 @@ passwd-file
 [mit-badge]: https://img.shields.io/badge/License-MIT-blue.svg?style=flat
 [mit-url]: LICENSE
 
-> Password File CLI Tool and Lib
+> Password File CLI Tool and Lib :closed_lock_with_key:
+
+
+# CLI Tool
+
+`npm install -g password-cli`
+
+
+## Usage
+
+```
+usage passwd-file [-c | -t | -D] passwordfile username
+      passwd-file -b [-c | -t] passwordfile username password
+
+Options:
+  -c, --create  create a new password file. This will overwrite existing files.
+                                                                       [boolean]
+  -b, --batch   run in batch mode to allow passing passwords on the command
+                line.                                                  [boolean]
+  -D, --delete  delete the username rather than adding/updating its password.
+                                                                       [boolean]
+  -t, --test    test mode. verify a users password.                    [boolean]
+  --version     Show version number                                    [boolean]
+  --help        Show help                                              [boolean]
+
+```
+
+
+# Lib
+
+`npm install passwd-file`
+
+
+## Usage
+
+```javascript
+const passwd = require('passwd-file')('/path/to/passwordfile')
+
+passwd.verify('user', 'password', (err, res) => {
+    if (!err && res) {
+        console.log('Password is correct!');
+    } 
+});
+
+```
 
 
 ## License
