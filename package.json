@@ -1,0 +1,53 @@
+{
+  "name": "passwd-file",
+  "version": "1.0.0",
+  "description": "Password File CLI Tool and Lib",
+  "main": "lib.js",
+  "preferGlobal": true,
+  "bin": {
+    "passwd-file": "./cli.js"
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "test": "camo-purge ; xo --space 4 --ignore tests.js && nyc --exclude tests.js mocha tests.js && nyc report --reporter=text-lcov | coveralls --force"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hobbyquaker/passwd-file.git"
+  },
+  "keywords": [
+    "password",
+    "login",
+    "security",
+    "cryptography",
+    "hash",
+    "pbkdf2",
+    "sha512",
+    "salt",
+    "file",
+    "cli"
+  ],
+  "author": "Sebastian Raff <hq@ccu.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hobbyquaker/passwordfile/issues"
+  },
+  "homepage": "https://github.com/hobbyquaker/passwordfile#readme",
+  "dependencies": {
+    "csprng": "^0.1.2",
+    "readline-sync": "^1.4.7",
+    "yargs": "^8.0.1"
+  },
+  "devDependencies": {
+    "pty.js": "latest",
+    "camo-purge": "latest",
+    "mocha": "latest",
+    "nyc": "latest",
+    "should": "latest",
+    "xo": "latest",
+    "coveralls": "latest"
+  }
+}
