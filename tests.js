@@ -11,7 +11,7 @@ fs.mkdirSync(folderName);
 fs.writeFileSync(__dirname + '/' + folderName + '/invalid_json', '}INVALID_JSON]');
 
 describe('command line interface - batch mode', function () {
-    this.timeout(180000);
+    this.timeout(60000);
     it('should create a new password file in batch mode', function (done) {
         cp.exec('./cli.js -b -c ./' + folderName + '/test-pwfile-1 testuser1 testpw1', (err, stdout, stderr) => {
             if (!err && stdout === 'User testuser1 created.\n') {
@@ -144,6 +144,7 @@ describe('command line interface', function () {
         });
     });
     it('should create a new password file', function (done) {
+        this.retries(3);
         const cli = pty.spawn('./cli.js', ['-c', __dirname + '/' + folderName + '/test-pwfile-4', 'testuser1'], {
             name: 'xterm-color',
             cols: 80,
@@ -164,6 +165,7 @@ describe('command line interface', function () {
         });
     });
     it('should verify a correct password', function (done) {
+        this.retries(3);
         const cli = pty.spawn('./cli.js', ['-t', __dirname + '/' + folderName + '/test-pwfile-4', 'testuser1'], {
             name: 'xterm-color',
             cols: 80,
@@ -182,6 +184,7 @@ describe('command line interface', function () {
         });
     });
     it('should not verify a wrong password', function (done) {
+        this.retries(3);
         const cli = pty.spawn('./cli.js', ['-t', __dirname + '/' + folderName + '/test-pwfile-4', 'testuser1'], {
             name: 'xterm-color',
             cols: 80,
@@ -200,6 +203,7 @@ describe('command line interface', function () {
         });
     });
     it('should output an error on update with mismatching password entry', function (done) {
+        this.retries(3);
         const cli = pty.spawn('./cli.js', ['-c', __dirname + '/' + folderName + '/test-pwfile-4', 'testuser1'], {
             name: 'xterm-color',
             cols: 80,
@@ -219,6 +223,7 @@ describe('command line interface', function () {
         });
     });
     it('should update a password', function (done) {
+        this.retries(3);
         const cli = pty.spawn('./cli.js', ['-c', __dirname + '/' + folderName + '/test-pwfile-4', 'testuser1'], {
             name: 'xterm-color',
             cols: 80,
@@ -239,6 +244,7 @@ describe('command line interface', function () {
         });
     });
     it('should verify a correct password', function (done) {
+        this.retries(3);
         const cli = pty.spawn('./cli.js', ['-t', __dirname + '/' + folderName + '/test-pwfile-4', 'testuser1'], {
             name: 'xterm-color',
             cols: 80,
