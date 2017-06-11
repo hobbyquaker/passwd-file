@@ -9,7 +9,7 @@ const folderName = 'testfiles-' + (Math.random() * 65536).toString(16).slice(5);
 fs.mkdir(folderName);
 
 describe('command line interface - batch mode', function () {
-    this.timeout(15000);
+    this.timeout(60000);
     it('should create a new password file in batch mode', function (done) {
         cp.exec('./cli.js -b -c ./' + folderName + '/test-pwfile-1 testuser1 testpw1', (err, stdout, stderr) => {
             if (!err && stdout === 'User testuser1 created.\n') {
@@ -104,7 +104,7 @@ describe('command line interface - batch mode', function () {
 });
 
 describe('command line interface', function () {
-    this.timeout(15000);
+    this.timeout(60000);
     it('should delete a user ', function (done) {
         cp.exec('./cli.js -D ./' + folderName + '/test-pwfile-1 testuser2', (err, stdout, stderr) => {
             if (!err && stdout === 'User testuser2 deleted.\n') {
@@ -248,7 +248,7 @@ describe('command line interface', function () {
 });
 
 describe('lib usage', function () {
-    this.timeout(15000);
+    this.timeout(60000);
     let lib;
     let lib_missingfile;
     it('should instantiate without an error', function () {
