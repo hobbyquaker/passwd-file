@@ -1,4 +1,4 @@
-require('should');
+const should = require('should');
 
 const fs = require('fs');
 const cp = require('child_process');
@@ -7,6 +7,8 @@ const pty = require('pty.js');
 const folderName = 'testfiles-' + (Math.random() * 65536).toString(16).slice(5);
 
 fs.mkdir(folderName);
+
+fs.writeFileSync(__dirname + '/' + folderName + '/invalid_json', '}INVALID_JSON]');
 
 describe('command line interface - batch mode', function () {
     this.timeout(180000);
@@ -85,6 +87,15 @@ describe('command line interface - batch mode', function () {
     it('should output an error on missing password file in batch mode', function (done) {
         cp.exec('./cli.js -b ./' + folderName + '/test-pwfile-3 testuser2 testpw3', (err, stdout, stderr) => {
             if (err && stderr.indexOf('Error: ENOENT: no such file or directory') !== -1) {
+                done();
+            } else {
+                done(err || new Error(stdout + '\n\n' + stderr));
+            }
+        });
+    });
+    it('should output an error on invalid password file in batch test mode', function (done) {
+        cp.exec('./cli.js -b -t ./' + folderName + '/invalid_json testuser2 testpw3', (err, stdout, stderr) => {
+            if (err && stderr.indexOf('SyntaxError: Unexpected token } in JSON at position 0') !== -1) {
                 done();
             } else {
                 done(err || new Error(stdout + '\n\n' + stderr));
@@ -251,15 +262,30 @@ describe('lib usage', function () {
     this.timeout(60000);
     let lib;
     let lib_missingfile;
+    let lib_invalidjson;
     it('should instantiate without an error', function () {
         lib = require('./lib.js')(__dirname + '/' + folderName + '/test-pwfile-4');
     });
     it('should instantiate without an error', function () {
         lib_missingfile = require('./lib.js')(__dirname + '/' + folderName + '/missing_file');
     });
+    it('should instantiate without an error', function () {
+        lib_invalidjson = require('./lib.js')(__dirname + '/' + folderName + '/invalid_json');
+    });
     it('should return an error when trying to verify with missing file', function (done) {
         lib_missingfile.verify('testuser1', 'wrong-password', (err, res) => {
             if (err && err.message.indexOf('ENOENT') === 0) {
+                done();
+            } else if (err) {
+                done(err);
+            } else {
+                done(new Error());
+            }
+        });
+    });
+    it('should return an error when trying to verify with an invalid file', function (done) {
+        lib_invalidjson.verify('testuser1', 'wrong-password', (err, res) => {
+            if (err && err.message.indexOf('Unexpected token') === 0) {
                 done();
             } else if (err) {
                 done(err);
