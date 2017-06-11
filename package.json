@@ -1,6 +1,6 @@
 {
   "name": "passwd-file",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Password File CLI Tool and Lib",
   "main": "lib.js",
   "preferGlobal": true,
