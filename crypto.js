@@ -22,6 +22,7 @@ module.exports = {
             options.keylength,
             options.digest,
             (err, key) => {
+                /* istanbul ignore next */
                 if (err) {
                     callback(err);
                 } else {

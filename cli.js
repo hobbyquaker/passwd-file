@@ -48,6 +48,7 @@ function writeFileSync(file, passwords) {
     fs.writeFileSync(file, JSON.stringify(passwords));
 }
 
+/* istanbul ignore next */
 function readPasswordSync() {
     const password1 = readlineSync.question('Password: ', {
         hideEchoBack: true,
@@ -106,6 +107,7 @@ if (options.delete) {
     process.exit(0);
 } else {
     if (!options.batch) {
+        /* istanbul ignore next */
         readPasswordSync();
     }
     if (options.test) {

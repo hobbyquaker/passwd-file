@@ -28,6 +28,7 @@ function Passwd(passwordfile) {
     this.checkPasswd = (passwords, user, password, callback) => {
         if (passwords[user]) {
             crypto.createHash(password, passwords[user].salt, (err, hash) => {
+                /* istanbul ignore next */
                 if (err) {
                     callback(err);
                 } else {
