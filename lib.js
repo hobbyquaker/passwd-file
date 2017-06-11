@@ -30,10 +30,8 @@ function Passwd(passwordfile) {
             crypto.createHash(password, passwords[user].salt, (err, hash) => {
                 if (err) {
                     callback(err);
-                } else if (hash === passwords[user].hash) {
-                    callback(null, true);
                 } else {
-                    callback(null, false);
+                    callback(null, hash === passwords[user].hash);
                 }
             });
         } else {
