@@ -116,6 +116,42 @@ describe('command line interface - batch mode', function () {
 
 describe('command line interface', function () {
     this.timeout(60000);
+    it('should output an error for invalid command line options', function (done) {
+        cp.exec('./cli.js -t -D ./' + folderName + '/test-pwfile-1 unknown-user', (err, stdout, stderr) => {
+            if (err && stderr === 'Error: Options delete and test are mutually exclusive.\n') {
+                done();
+            } else {
+                done(err || new Error(stdout + '\n\n' + stderr));
+            }
+        });
+    });
+    it('should output an error for invalid command line options', function (done) {
+        cp.exec('./cli.js -c -D ./' + folderName + '/test-pwfile-1 unknown-user', (err, stdout, stderr) => {
+            if (err && stderr === 'Error: Options create and delete are mutually exclusive.\n') {
+                done();
+            } else {
+                done(err || new Error(stdout + '\n\n' + stderr));
+            }
+        });
+    });
+    it('should output an error for invalid command line options', function (done) {
+        cp.exec('./cli.js -c -t ./' + folderName + '/test-pwfile-1 unknown-user', (err, stdout, stderr) => {
+            if (err && stderr === 'Error: Options create and test are mutually exclusive.\n') {
+                done();
+            } else {
+                done(err || new Error(stdout + '\n\n' + stderr));
+            }
+        });
+    });
+    it('should output an error for invalid command line options', function (done) {
+        cp.exec('./cli.js -b -D ./' + folderName + '/test-pwfile-1 unknown-user password', (err, stdout, stderr) => {
+            if (err && stderr === 'Error: Options delete and batch are mutually exclusive.\n') {
+                done();
+            } else {
+                done(err || new Error(stdout + '\n\n' + stderr));
+            }
+        });
+    });
     it('should delete a user ', function (done) {
         cp.exec('./cli.js -D ./' + folderName + '/test-pwfile-1 testuser2', (err, stdout, stderr) => {
             if (!err && stdout === 'User testuser2 deleted.\n') {

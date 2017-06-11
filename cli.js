@@ -33,6 +33,9 @@ if (options.create && options.delete) {
 } else if (options.delete && options.test) {
     console.error('Error: Options delete and test are mutually exclusive.');
     process.exit(1);
+} else if (options.delete && options.batch) {
+    console.error('Error: Options delete and batch are mutually exclusive.');
+    process.exit(1);
 }
 
 let [passwordfile, username, password] = options._;
