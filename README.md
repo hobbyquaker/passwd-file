@@ -2,7 +2,6 @@ passwd-file
 ======
 
 [![npm version](https://badge.fury.io/js/passwd-file.svg)](https://badge.fury.io/js/passwd-file) 
-[![npm downloads](https://img.shields.io/npm/dm/passwd-file.svg)](https://www.npmjs.com/package/passwd-file)
 [![Dependency Status](https://img.shields.io/gemnasium/hobbyquaker/passwd-file.svg?maxAge=2592000)](https://gemnasium.com/github.com/hobbyquaker/passwd-file)
 [![Coverage Status](https://coveralls.io/repos/github/hobbyquaker/passwd-file/badge.svg?branch=master)](https://coveralls.io/github/hobbyquaker/passwd-file?branch=master)
 [![Build Status](https://travis-ci.org/hobbyquaker/passwd-file.svg?branch=master)](https://travis-ci.org/hobbyquaker/passwd-file)
