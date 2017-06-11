@@ -9,7 +9,7 @@ const folderName = 'testfiles-' + (Math.random() * 65536).toString(16).slice(5);
 fs.mkdir(folderName);
 
 describe('command line interface - batch mode', function () {
-    this.timeout(60000);
+    this.timeout(180000);
     it('should create a new password file in batch mode', function (done) {
         cp.exec('./cli.js -b -c ./' + folderName + '/test-pwfile-1 testuser1 testpw1', (err, stdout, stderr) => {
             if (!err && stdout === 'User testuser1 created.\n') {
