@@ -87,7 +87,12 @@ function setPassword() {
     const isNew = !passwords[username];
     const salt = crypto.createSalt();
     const hash = crypto.createHashSync(password, salt);
-    passwords[username] = {salt, hash};
+    if (isNew) {
+        passwords[username] = {salt, hash};
+    } else {
+        passwords[username].salt = salt;
+        passwords[username].hash = hash;
+    }
     writeFileSync(passwordfile, passwords);
     console.log(`User ${username} ${isNew ? 'created' : 'updated'}.`);
     process.exit(0);
