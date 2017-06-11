@@ -6,7 +6,7 @@ const pty = require('pty.js');
 
 const folderName = 'testfiles-' + (Math.random() * 65536).toString(16).slice(5);
 
-fs.mkdir(folderName);
+fs.mkdirSync(folderName);
 
 fs.writeFileSync(__dirname + '/' + folderName + '/invalid_json', '}INVALID_JSON]');
 
