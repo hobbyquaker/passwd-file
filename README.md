@@ -15,7 +15,7 @@
 
 # CLI Tool
 
-`npm install -g password-cli`
+`npm install -g passwd-file`
 
 
 ## Usage
