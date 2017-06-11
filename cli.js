@@ -109,8 +109,8 @@ if (options.delete) {
     console.log(`User ${username} deleted.`);
     process.exit(0);
 } else {
+    /* istanbul ignore next */
     if (!options.batch) {
-        /* istanbul ignore next */
         readPasswordSync();
     }
     if (options.test) {
